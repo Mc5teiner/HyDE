@@ -37,7 +37,7 @@ flg_Restore=0
 flg_Service=0
 flg_DryRun=0
 flg_Shell=0
-flg_Nvidia=1
+flg_Nvidia=0
 flg_ThemeInstall=1
 
 while getopts idrstmnh RunStep; do
@@ -144,17 +144,17 @@ EOF
     #--------------------------------#
     # add nvidia drivers to the list #
     #--------------------------------#
-    if nvidia_detect; then
-        if [ ${flg_Nvidia} -eq 1 ]; then
-            cat /usr/lib/modules/*/pkgbase | while read -r kernel; do
-                echo "${kernel}-headers" >>"${scrDir}/install_pkg.lst"
-            done
-            nvidia_detect --drivers >>"${scrDir}/install_pkg.lst"
-        else
-            print_log -warn "Nvidia" "Nvidia GPU detected but ignored..."
-        fi
-    fi
-    nvidia_detect --verbose
+  #  if nvidia_detect; then
+  #      if [ ${flg_Nvidia} -eq 1 ]; then
+  #          cat /usr/lib/modules/*/pkgbase | while read -r kernel; do
+  #              echo "${kernel}-headers" >>"${scrDir}/install_pkg.lst"
+  #          done
+  #          nvidia_detect --drivers >>"${scrDir}/install_pkg.lst"
+  #      else
+  #          print_log -warn "Nvidia" "Nvidia GPU detected but ignored..."
+  #      fi
+  #  fi
+  #  nvidia_detect --verbose
 
     #----------------#
     # get user prefs #
